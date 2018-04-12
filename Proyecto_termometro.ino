@@ -1,6 +1,5 @@
-
 #define TEMP_SENSOR 0
-#define MOTOR  5
+#define MOTOR  3
 
 const int led_red = 13;
 const int ledDesconocido = 0;
@@ -19,12 +18,11 @@ void loop() {
   signalVoltage = analogRead(TEMP_SENSOR);
   celsiusTemp = (5 * signalVoltage * 100) /1024;
   Serial.println(celsiusTemp);
-  delay(3000);
+ 
   if (celsiusTemp > 22){
-    digitalWrite(ledDesconocido, LOW);
-    digitalWrite(led_red, HIGH);
+    analogWrite(MOTOR, 255);
   }else{
-    digitalWrite(led_red, LOW);
-    digitalWrite(ledDesconocido, HIGH);
+    analogWrite(MOTOR, 0);
   }
+   delay(500);
 }
